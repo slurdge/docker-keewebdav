@@ -8,7 +8,7 @@ ARG arch="amd64"
 RUN apk add --no-cache openssh-client ca-certificates git wget
 
 # install caddy
-RUN wget "https://caddyserver.com/download/$platform/$arch?plugins=http.realip,http.cors,http.minify,http.webdav&license=personal&telemetry=off" -O tmp.tar.gz && tar xzf tmp.tar.$
+RUN wget "https://caddyserver.com/download/$platform/$arch?plugins=http.realip,http.cors,http.minify,http.webdav&license=personal&telemetry=off" -O tmp.tar.gz && tar xzf tmp.tar.gz && rm tmp.tar.gz
 
 # get keeweb release
 RUN git clone --depth=1 --branch "gh-pages" https://github.com/keeweb/keeweb/
