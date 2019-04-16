@@ -1,0 +1,19 @@
+http://:8080
+
+root /srv
+
+index index.html
+
+webdav /kdbx {
+        scope dav
+        block_r .*
+        allow_r .*\.kdbx$
+        modify true
+}
+
+rewrite {
+        r (^/[^/]*\.kdbx$)
+        if {method} not_is OPTIONS
+        to /kdbx/{1}
+}
+

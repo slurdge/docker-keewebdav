@@ -1,0 +1,10 @@
+{
+  "settings": {
+    "expandGroups": false,
+    "demoOpened": true,
+    "canOpenDemo": false,
+    "dropbox": false,
+    "gdrive": false,
+    "onedrive": false
+  }
+}
