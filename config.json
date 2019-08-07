@@ -5,6 +5,8 @@
     "canOpenDemo": false,
     "dropbox": false,
     "gdrive": false,
-    "onedrive": false
+    "onedrive": false,
+    "canImportXml": false,
+    "webdavSaveMethod": "put"
   }
 }
