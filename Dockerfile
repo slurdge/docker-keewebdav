@@ -2,7 +2,7 @@ FROM alpine:latest as builder
 LABEL maintainer "Slurdge <slurdge@slurdge.org>"
 
 ARG cversion="1.0.0"
-ARG kversion="v1.8.2"
+ARG kversion="v1.14.2"
 ARG platform="linux"
 ARG arch="amd64"
 
