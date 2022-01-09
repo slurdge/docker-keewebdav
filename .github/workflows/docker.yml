@@ -3,7 +3,6 @@ name: Docker Image CI
 on:
   push:
     branches: [ deploy ]
-  push:
     paths:
       - 'versions/*'
   workflow_dispatch:
