@@ -58,8 +58,8 @@ jobs:
         tags: |
           slurdge/keewebdav:latest
           ghcr.io/slurdge/keewebdav:latest
-          user/keewebdav:caddy_${{ steps.vars.outputs.caddy_version }}_keeweb_${{ steps.vars.outputs.keeweb_version }}
-          ghcr.io/user/keewebdav:caddy_${{ steps.vars.outputs.caddy_version }}_keeweb_${{ steps.vars.outputs.keeweb_version }}
+          slurdge/keewebdav:caddy_${{ steps.vars.outputs.caddy_version }}_keeweb_${{ steps.vars.outputs.keeweb_version }}
+          ghcr.io/slurdge/keewebdav:caddy_${{ steps.vars.outputs.caddy_version }}_keeweb_${{ steps.vars.outputs.keeweb_version }}
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}

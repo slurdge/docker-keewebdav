@@ -19,7 +19,7 @@ RUN set -eux; \
         s390x)   arch='s390x'; armv='';; \
         *) echo >&2 "error: unsupported architecture ($arch)"; exit 1 ;;\
     esac; \
-    wget "https://caddyserver.com/api/download?os=$platform&arch=$arch&arm=$armv&p=github.com%2Fmholt%2Fcaddy-webdav" -O caddy
+    wget --quiet "https://caddyserver.com/api/download?os=$platform&arch=$arch&arm=$armv&p=github.com%2Fmholt%2Fcaddy-webdav" -O caddy
 
 # get keeweb release
 RUN git clone --depth=1 --branch "gh-pages" https://github.com/keeweb/keeweb/
