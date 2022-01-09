@@ -11,8 +11,8 @@ RUN set -eux; \
     apkArch="$(apk --print-arch)"; \
     case "$apkArch" in \
         x86_64)  arch='amd64'; armv='';; \
-        armhf)   arch='armv6'; armv='6';; \
-        armv7)   arch='armv7'; armv='7';; \
+        armhf)   arch='arm'; armv='6';; \
+        armv7)   arch='arm'; armv='7';; \
         aarch64) arch='arm64'; armv='';; \
         ppc64el) arch='ppc64'; armv='';; \
         ppc64le) arch='ppc64le'; armv='';; \
