@@ -9,7 +9,6 @@
 	@dbfiles {
 		path *.kdbx
 		path *.kdbx.*
-		path kdbx/*
 	}
 
 	webdav @dbfiles {

@@ -5,9 +5,7 @@ A Docker repository to have a simple Caddy+Keeweb+Webdav solution.
 The focus of this repository is **simplicity** so you can roll your own auto hosted Keeweb and Webdav solution.
 
 You can use keepass synchronisation with the following url:
-```https://domain.com/database.kdbx``` (you have to use PUT/not secure database write in keepass options)
-or
-```https://domain.com/kdbx/database.kdbx``` (you can use MOVE/secure database write in keepass options)
+```https://example.com/database.kdbx```
 
 ## Technical stack
 
@@ -25,7 +23,29 @@ Caddy is configured to serve all files ending in `.kdbx` through webdav without 
 
 ## Run in docker-compose with a traefik load balancer (https)
 
-You can use the following `docker-compose.yml` file:
+You can use the following `docker-compose.yml` file with traefik v2:
+
+```
+version: '2'
+services:
+  keeweb:
+    image: slurdge/keewebdav:latest
+    container_name: keeweb
+    restart: always
+    volumes:
+      - ./data:/srv/dav
+    labels:
+      - "traefik.http.routers.keeweb.rule=Host(`example.com`)"
+      - "traefik.http.routers.keeweb.tls.certresolver=le"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+```
+
+You can use the following `docker-compose.yml` file with traefik v1:
 
 ```
 version: '2'
@@ -39,7 +59,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.port=8080"
-      - "traefik.frontend.rule=Host:domain.com"
+      - "traefik.frontend.rule=Host:example.com"
       - "traefik.docker.network=proxy"
     networks:
       - proxy
@@ -48,6 +68,8 @@ networks:
   proxy:
     external: true
 ```
+
+Both examples supposes that there is a network named 'proxy' that is used by traefik.
 
 ## Extensions
 
