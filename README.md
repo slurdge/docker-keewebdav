@@ -4,12 +4,13 @@ A Docker repository to have a simple Caddy+Keeweb+Webdav solution.
 
 The focus of this repository is **simplicity** so you can roll your own auto hosted Keeweb and Webdav solution.
 
-You can use keepass synchronisation with the following url:
+You can use Keepass synchronisation with the following url:
 ```https://example.com/database.kdbx```
 
 ## Technical stack
 
 Pretty simple:
+
 * [Caddy](https://caddyserver.com/) in http mode with webdav extension;
 * [Keeweb](https://keeweb.info/) with a special config removing unused options by default.
 
@@ -25,7 +26,7 @@ Caddy is configured to serve all files ending in `.kdbx` through webdav without 
 
 You can use the following `docker-compose.yml` file with traefik v2:
 
-```
+```yaml
 version: '2'
 services:
   keeweb:
@@ -47,7 +48,7 @@ networks:
 
 You can use the following `docker-compose.yml` file with traefik v1:
 
-```
+```yaml
 version: '2'
 services:
   keeweb:
