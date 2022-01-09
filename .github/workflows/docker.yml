@@ -17,6 +17,12 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - name: Get version
+      id: vars
+      run: |
+        echo ::set-output name=caddy_version::$(cat versions/caddy.txt)
+        echo ::set-output name=keeweb_version::$(cat versions/keeweb.txt)
+
     - name: Setup QEMU
       id: qemu
       uses: docker/setup-qemu-action@v1.0.1
@@ -50,10 +56,10 @@ jobs:
         platforms: linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7
         push: true
         tags: |
-            slurdge/keewebdav:latest
-            ghcr.io/slurdge/keewebdav:latest
-            user/keewebdav:<version>
-            ghcr.io/user/keewebdav:<version>
+          slurdge/keewebdav:latest
+          ghcr.io/slurdge/keewebdav:latest
+          user/keewebdav:caddy_${{ steps.vars.outputs.caddy_version }}_keeweb_${{ steps.vars.outputs.keeweb_version }}
+          ghcr.io/user/keewebdav:caddy_${{ steps.vars.outputs.caddy_version }}_keeweb_${{ steps.vars.outputs.keeweb_version }}
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
