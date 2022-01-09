@@ -3,6 +3,7 @@ name: Upstream Versions CI
 on:
   schedule:
     - cron:  '0 18 * * *'
+  workflow_dispatch:
 jobs:
   get-version:
     runs-on: ubuntu-latest
