@@ -3,8 +3,6 @@ name: Docker Image CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
   workflow_dispatch:
 
 jobs:
@@ -42,7 +40,7 @@ jobs:
       with:
         platforms: linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7
         push: true
-        tags: <repo>/<project>:latest
+        tags: slurdge/keewebdav:latest
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
