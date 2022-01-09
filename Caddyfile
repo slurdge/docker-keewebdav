@@ -1,19 +1,23 @@
-http://:8080
-
-root /srv
-
-index index.html
-
-webdav /kdbx {
-        scope dav
-        block_r .*
-        allow_r .*\.kdbx$
-        modify true
+{
+	order webdav before file_server
+	log {
+		level INFO
+	}
 }
 
-rewrite {
-        r (^/[^/]*\.kdbx$)
-        if {method} not_is OPTIONS
-        to /kdbx/{1}
-}
+:8080 {
+	@dbfiles {
+		path *.kdbx
+		path *.kdbx.*
+		path kdbx/*
+	}
 
+	webdav @dbfiles {
+		root /srv/dav/
+	}
+
+	file_server {
+		root /srv
+		index index.html
+	}
+}
