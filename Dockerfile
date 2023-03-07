@@ -9,6 +9,7 @@ RUN apk add --no-cache openssh-client openssl ca-certificates git wget
 # install caddy
 RUN set -eux; \
     apkArch="$(apk --print-arch)"; \
+    echo "$apkArch"; \
     case "$apkArch" in \
         x86_64)  arch='amd64'; armv='';; \
         armhf)   arch='arm'; armv='6';; \
