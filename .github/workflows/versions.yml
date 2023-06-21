@@ -8,7 +8,7 @@ jobs:
   get-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           token: ${{ secrets.REPO_SCOPED_TOKEN }}
       - name: Fetch release version
@@ -16,11 +16,11 @@ jobs:
         run: |
           curl -sL https://api.github.com/repos/caddyserver/caddy/releases/latest | jq -r ".tag_name" > versions/caddy.txt
           curl -sL https://api.github.com/repos/keeweb/keeweb/releases/latest | jq -r ".tag_name" > versions/keeweb.txt
-          echo ::set-output name=caddy_version::$(cat versions/caddy.txt)
-          echo ::set-output name=keeweb_version::$(cat versions/keeweb.txt)
+          echo "caddy_version=$(cat versions/caddy.txt)" >> "$GITHUB_OUTPUT"
+          echo "keeweb_version=$(cat versions/keeweb.txt)" >> "$GITHUB_OUTPUT"
       - name: Check for modified files
         id: git-check
-        run: echo ::set-output name=modified::$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")
+        run: echo "modified=$([ -z "`git status --porcelain`" ] && echo "false" || echo "true")" >> "$GITHUB_OUTPUT"
       - name: Commit latest release version
         if: steps.git-check.outputs.modified == 'true'
         run: |

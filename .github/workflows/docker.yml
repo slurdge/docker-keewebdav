@@ -14,13 +14,13 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Get version
       id: vars
       run: |
-        echo ::set-output name=caddy_version::$(cat versions/caddy.txt)
-        echo ::set-output name=keeweb_version::$(cat versions/keeweb.txt)
+        echo "caddy_version=$(cat versions/caddy.txt)" >> "$GITHUB_OUTPUT"
+        echo "keeweb_version=$(cat versions/keeweb.txt)" >> "$GITHUB_OUTPUT"
 
     - name: Setup QEMU
       id: qemu
